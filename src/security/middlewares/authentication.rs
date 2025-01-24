@@ -30,9 +30,9 @@ pub async fn authentication_middleware<T: IntoResponse+From<SecurityErrors>>
                 Ok(claims) => {
                     let current_context = tracing::Span::current().context();
                     let span = current_context.span();
-                    let user_id = KeyValue::new(Key::from_static_str("user_id"), Value::from(claims.sub.to_owned()));
+                    let user_id = KeyValue::new(Key::from_static_str("user_id"), Value::from(claims.sub.to_string()));
                     span.set_attribute(user_id);
-                    let client_id = KeyValue::new(Key::from_static_str("client_id"),Value::from(claims.azp.to_owned()));
+                    let client_id = KeyValue::new(Key::from_static_str("client_id"),Value::from(claims.azp.to_string()));
                     span.set_attribute(client_id);
                     let arc_claims = Arc::new(claims);
                     request.extensions_mut().insert(arc_claims);
