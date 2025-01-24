@@ -45,9 +45,9 @@ pub fn issue_jwt_token(jwt_config: &JwtConfig, client_id: Uuid, user_id:Uuid, sc
         iat,
         JWT_ISSUER.to_string(),
         nbf,
-        user_id.to_string(),
+        user_id,
         scopes,
-        client_id.to_string()
+        client_id
     );
     let token_header = Header::new(JWT_ALG);
     let token = encode(&token_header, &claims, &jwt_config.private_key)?;

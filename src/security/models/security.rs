@@ -2,6 +2,7 @@ use core::fmt::{Display, Formatter};
 use core::str::FromStr;
 use jsonwebtoken::{DecodingKey, EncodingKey};
 use serde::{Deserialize, Serialize};
+use uuid::Uuid;
 
 #[derive(Clone)]
 pub struct JwtConfig {
@@ -17,9 +18,9 @@ pub struct JwtClaims {
     pub iat: usize,
     pub iss: String,
     pub nbf: usize,
-    pub sub: String,
+    pub sub: Uuid,
     pub scopes: String,
-    pub azp: String,
+    pub azp: Uuid,
 }
 impl JwtClaims {
     pub fn new(
@@ -28,9 +29,9 @@ impl JwtClaims {
         iat: usize,
         iss: String,
         nbf: usize,
-        sub: String,
+        sub: Uuid,
         scopes: String,
-        azp: String,
+        azp: Uuid,
     ) -> Self {
         Self {
             aud,

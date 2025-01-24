@@ -1,5 +1,7 @@
+use std::fmt::{Display, Formatter};
 use std::time::SystemTimeError;
 
+#[derive(Debug)]
 pub enum SecurityErrors{
     Unauthorized(String),
     Forbidden(String),
@@ -30,5 +32,17 @@ impl From<SystemTimeError> for SecurityErrors{
                 SecurityErrors::GenericError(String::from("Error while trying to get System Time"))
             }
         }
+    }
+}
+
+impl Display for SecurityErrors{
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        let variant_value = match self {
+            SecurityErrors::Unauthorized(_) => "Unauthorized",
+            SecurityErrors::Forbidden(_) => "Forbidden",
+            SecurityErrors::MissingAuthorizationHeader(_) => "MissingAuthorizationHeader",
+            SecurityErrors::GenericError(_) => "GenericError",
+        };
+        write!(f, "{}", variant_value)
     }
 }
