@@ -1,0 +1,17 @@
+[package]
+name = "axum-production-ready-security"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+description = "Crate used to add Authorization and Authentication for Axum, only works for JWT passed as Bearer Token"
+
+[dependencies]
+jsonwebtoken = "9.3.0"
+uuid = {version = "1.12.0", features = ["v7"]}
+serde = {version = "1.0.217", features = ["derive"]}
+axum = "0.8.1"
+axum-extra = { version = "0.10.0", features = ["typed-header"] }
+tracing = "0.1.41"
+tracing-opentelemetry = "0.28.0"
+opentelemetry = "0.27.1"
+sqlx = {version = "0.8.3", features = ["postgres", "runtime-tokio"]}
