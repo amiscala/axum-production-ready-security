@@ -1,17 +1,13 @@
 use opentelemetry::{Key, KeyValue, Value};
-use axum_extra::headers;
 use axum::response::{IntoResponse, Response};
 use std::sync::Arc;
 use axum::Extension;
 use axum::middleware::Next;
 use axum::extract::Request;
-use axum::http::header;
 use axum_extra::headers::{Authorization, HeaderMapExt};
 use axum_extra::headers::authorization::Bearer;
-use axum_extra::TypedHeader;
-use jsonwebtoken::decode;
 use tracing_opentelemetry::OpenTelemetrySpanExt;
-use crate::security::models::{JwtClaims, JwtConfig};
+use crate::security::models::{JwtConfig};
 use opentelemetry::trace::TraceContextExt;
 use crate::{validate_jwt_token, SecurityErrors};
 

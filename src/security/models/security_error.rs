@@ -28,7 +28,7 @@ impl From<std::io::Error> for SecurityErrors{
 impl From<SystemTimeError> for SecurityErrors{
     fn from(value: SystemTimeError) -> Self {
         match value {
-            _SystemTimeError => {
+            _system_time_error => {
                 SecurityErrors::GenericError(String::from("Error while trying to get System Time"))
             }
         }
