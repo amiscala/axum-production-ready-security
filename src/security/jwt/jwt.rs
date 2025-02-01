@@ -1,12 +1,12 @@
-use crate::security::models::security::{JwtClaims};
-use std::time::Duration;
+use crate::security::models::security::JwtClaims;
 use crate::security::models::JwtConfig;
+use crate::SecurityErrors;
 use jsonwebtoken::{decode, encode, Algorithm, DecodingKey, EncodingKey, Header, Validation};
 use std::fs;
 use std::ops::Add;
+use std::time::Duration;
 use std::time::SystemTime;
 use uuid::Uuid;
-use crate::SecurityErrors;
 
 const JWT_AUDIENCE: &str = env!("CARGO_PKG_NAME");
 const JWT_ISSUER: &str = env!("CARGO_PKG_NAME");

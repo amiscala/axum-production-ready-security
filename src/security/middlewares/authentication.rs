@@ -1,15 +1,15 @@
-use opentelemetry::{Key, KeyValue, Value};
-use axum::response::{IntoResponse, Response};
-use std::sync::Arc;
-use axum::Extension;
-use axum::middleware::Next;
-use axum::extract::Request;
-use axum_extra::headers::{Authorization, HeaderMapExt};
-use axum_extra::headers::authorization::Bearer;
-use tracing_opentelemetry::OpenTelemetrySpanExt;
-use crate::security::models::{JwtConfig};
-use opentelemetry::trace::TraceContextExt;
+use crate::security::models::JwtConfig;
 use crate::{validate_jwt_token, SecurityErrors};
+use axum::extract::Request;
+use axum::middleware::Next;
+use axum::response::{IntoResponse, Response};
+use axum::Extension;
+use axum_extra::headers::authorization::Bearer;
+use axum_extra::headers::{Authorization, HeaderMapExt};
+use opentelemetry::trace::TraceContextExt;
+use opentelemetry::{Key, KeyValue, Value};
+use std::sync::Arc;
+use tracing_opentelemetry::OpenTelemetrySpanExt;
 
 pub async fn authentication_middleware<T: IntoResponse+From<SecurityErrors>>
 (
